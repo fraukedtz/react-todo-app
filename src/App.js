@@ -9,10 +9,6 @@ class App extends Component {
     todos: []
   }
 
-  log = text => {
-    console.log(text)
-  }
-
   renderTodos() {
     return this.state.todos.map((item, index) => (
       <Todo
@@ -37,11 +33,24 @@ class App extends Component {
     })
   }
 
+  handleKeyPress = event => {
+    const { todos } = this.state
+    if (event.key === 'Enter') {
+      const newTodos = [{ text: event.target.value, isDone: false }, ...todos]
+
+      this.setState({
+        todos: newTodos
+      })
+
+      event.target.value = ''
+    }
+  }
+
   render() {
     return (
       <section className="App">
         <Heading />
-        <Input />
+        <Input onEnter={this.handleKeyPress} />
         <ul>{this.renderTodos()}</ul>
       </section>
     )
