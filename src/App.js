@@ -5,6 +5,10 @@ import Input from './Input.js'
 import Todo from './Todo.js'
 
 class App extends Component {
+  log = text => {
+    console.log(text)
+  }
+
   render() {
     return (
       <section className="App">
@@ -12,7 +16,7 @@ class App extends Component {
         <Input />
         <ul>
           {/* {this.renderDoors()} */}
-          <Todo />
+          <Todo text="shopping" onClick={() => this.log('shopping')} />
         </ul>
       </section>
     )

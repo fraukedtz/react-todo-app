@@ -3,7 +3,8 @@ import './Todo.css'
 
 export class Todo extends Component {
   render() {
-    return <li>todoItem</li>
+    const { text, onClick } = this.props
+    return <li onClick={onClick}>{text}</li>
   }
 }
 
