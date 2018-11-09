@@ -16,8 +16,19 @@ class App extends Component {
         text={item.text}
         isDone={item.isDone}
         onClick={() => this.toggleDone(index)}
+        onDelete={() => this.deleteTodo(index)}
       />
     ))
+  }
+
+  deleteTodo = index => {
+    const { todos } = this.state
+
+    const updatedTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
+
+    this.setState({
+      todos: updatedTodos
+    })
   }
 
   toggleDone = index => {

@@ -3,11 +3,14 @@ import './Todo.css'
 
 export class Todo extends Component {
   render() {
-    const { text, isDone, onClick } = this.props
+    const { text, isDone, onClick, onDelete } = this.props
     return (
-      <li onClick={onClick} className={isDone ? 'done' : ''}>
-        {text}
-      </li>
+      <div className="listItem">
+        <li onClick={onClick} className={isDone ? 'done' : ''}>
+          {text}
+        </li>
+        <button onClick={onDelete}>x</button>
+      </div>
     )
   }
 }
