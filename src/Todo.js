@@ -9,7 +9,7 @@ export class Todo extends Component {
         <li onClick={onClick} className={isDone ? 'done' : ''}>
           {text}
         </li>
-        <button onClick={onDelete}>x</button>
+        <button onClick={onDelete}>&times;</button>
       </div>
     )
   }
