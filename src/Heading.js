@@ -4,7 +4,7 @@ import './Heading.css'
 export class Heading extends Component {
   render() {
     return (
-      <div>
+      <div className="Heading">
         <h1>To-Do</h1>
       </div>
     )

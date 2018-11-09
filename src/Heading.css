@@ -1,0 +1,11 @@
+.Heading {
+  background-color: deeppink;
+  font-size: 30px;
+  padding-top: 80px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+}
+
+h1 {
+  margin: 0;
+}

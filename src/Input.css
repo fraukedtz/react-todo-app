@@ -1,0 +1,9 @@
+input {
+  padding: 10px 10px;
+  font-size: 24px;
+}
+
+::placeholder {
+  color: deeppink;
+  opacity: 1; /* Firefox */
+}

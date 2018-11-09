@@ -12,7 +12,7 @@ class App extends Component {
   renderTodos() {
     return this.state.todos.map((item, index) => (
       <Todo
-        key={item.text}
+        key={Math.random()}
         text={item.text}
         isDone={item.isDone}
         onClick={() => this.toggleDone(index)}
@@ -59,11 +59,15 @@ class App extends Component {
 
   render() {
     return (
-      <section className="App">
-        <Heading />
-        <Input onEnter={this.handleKeyPress} />
-        <ul>{this.renderTodos()}</ul>
-      </section>
+      <React.Fragment>
+        <section className="App">
+          <Heading />
+          <ul>{this.renderTodos()}</ul>
+        </section>
+        <footer>
+          <Input onEnter={this.handleKeyPress} />
+        </footer>
+      </React.Fragment>
     )
   }
 }
