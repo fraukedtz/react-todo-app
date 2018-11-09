@@ -1,0 +1,10 @@
+.Welcome {
+  background-color: #fefefe;
+  padding: 50px 0 50px 30px;
+  font-size: 24px;
+}
+
+h3,
+p {
+  margin: 0;
+}

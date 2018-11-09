@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import Heading from './Heading.js'
+import Counter from './Counter.js'
+import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
 
@@ -57,12 +59,23 @@ class App extends Component {
     }
   }
 
+  getDoneNumber() {
+    return this.state.todos.filter(t => t.isDone).length
+  }
+
   render() {
     return (
       <React.Fragment>
         <section className="App">
           <Heading />
-          <ul>{this.renderTodos()}</ul>
+          {this.state.todos.length > 0 ? (
+            <Counter number={this.getDoneNumber()} />
+          ) : null}
+          {this.state.todos.length > 0 ? (
+            <ul>{this.renderTodos()}</ul>
+          ) : (
+            <Welcome />
+          )}
         </section>
         <footer>
           <Input onEnter={this.handleKeyPress} />

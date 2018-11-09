@@ -1,9 +1,8 @@
 .Heading {
-  background-color: deeppink;
+  background-image: linear-gradient(#ff89c9, deeppink);
+  color: #fefefe;
   font-size: 30px;
-  padding-top: 80px;
-  padding-bottom: 10px;
-  padding-left: 30px;
+  padding: 80px 0 10px 30px;
 }
 
 h1 {

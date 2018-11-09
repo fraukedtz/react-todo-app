@@ -5,5 +5,4 @@ input {
 
 ::placeholder {
   color: deeppink;
-  opacity: 1; /* Firefox */
 }
