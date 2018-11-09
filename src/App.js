@@ -18,6 +18,7 @@ class App extends Component {
       <Todo
         key={item.text}
         text={item.text}
+        isDone={item.isDone}
         onClick={() => this.toggleDone(index)}
       />
     ))
