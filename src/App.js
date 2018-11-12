@@ -8,7 +8,29 @@ import Todo from './Todo.js'
 
 class App extends Component {
   state = {
-    todos: []
+    todos: this.load()
+  }
+
+  render() {
+    this.save()
+    return (
+      <React.Fragment>
+        <section className="App">
+          <Heading />
+          {this.state.todos.length > 0 ? (
+            <Counter number={this.getDoneNumber()} />
+          ) : null}
+          {this.state.todos.length > 0 ? (
+            <ul>{this.renderTodos()}</ul>
+          ) : (
+            <Welcome />
+          )}
+        </section>
+        <footer>
+          <Input onEnter={this.handleKeyPress} />
+        </footer>
+      </React.Fragment>
+    )
   }
 
   renderTodos() {
@@ -35,27 +57,29 @@ class App extends Component {
 
   toggleDone = index => {
     const { todos } = this.state
-    const newTodos = [
+    const todo = todos[index]
+    const updatedTodos = [
       ...todos.slice(0, index),
-      { ...todos[index], isDone: !todos[index].isDone },
+      { ...todo, isDone: !todo.isDone },
       ...todos.slice(index + 1)
     ]
 
     this.setState({
-      todos: newTodos
+      todos: updatedTodos
     })
   }
 
   handleKeyPress = event => {
     const { todos } = this.state
+    const input = event.target
     if (event.key === 'Enter') {
-      const newTodos = [{ text: event.target.value, isDone: false }, ...todos]
+      const updatedTodos = [{ text: input.value, isDone: false }, ...todos]
 
       this.setState({
-        todos: newTodos
+        todos: updatedTodos
       })
 
-      event.target.value = ''
+      input.value = ''
     }
   }
 
@@ -63,25 +87,16 @@ class App extends Component {
     return this.state.todos.filter(t => t.isDone).length
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <section className="App">
-          <Heading />
-          {this.state.todos.length > 0 ? (
-            <Counter number={this.getDoneNumber()} />
-          ) : null}
-          {this.state.todos.length > 0 ? (
-            <ul>{this.renderTodos()}</ul>
-          ) : (
-            <Welcome />
-          )}
-        </section>
-        <footer>
-          <Input onEnter={this.handleKeyPress} />
-        </footer>
-      </React.Fragment>
-    )
+  save() {
+    localStorage.setItem('todo-app--todos', JSON.stringify(this.state.todos))
+  }
+
+  load() {
+    try {
+      return JSON.parse(localStorage.getItem('todo-app--todos')) || []
+    } catch (err) {
+      return []
+    }
   }
 }
 

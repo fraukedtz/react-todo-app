@@ -6,7 +6,9 @@ export class Counter extends Component {
     return (
       <div className="Counter">
         {this.props.number > 0
-          ? `Well done - you have completed ${this.props.number} task(s)! 😎`
+          ? `Well done - you have completed ${this.props.number} ${
+              this.props.number > 1 ? 'tasks' : 'task'
+            }! 😎`
           : `Let's go - start completing your tasks! 🤓`}
       </div>
     )
