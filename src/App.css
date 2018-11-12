@@ -3,12 +3,12 @@
   background-color: deeppink;
 }
 
-ul {
+.App ul {
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
-footer {
+.inputDiv {
   display: grid;
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import uid from 'uid'
 import './App.css'
 import Heading from './Heading.js'
 import Counter from './Counter.js'
 import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
+import Separator from './Separator'
 
 class App extends Component {
   state = {
@@ -20,33 +22,44 @@ class App extends Component {
           {this.state.todos.length > 0 ? (
             <Counter number={this.getDoneNumber()} />
           ) : null}
+          <Separator text={'to-do'} />
           {this.state.todos.length > 0 ? (
-            <ul>{this.renderTodos()}</ul>
+            <ul>{this.renderOpenTodos()}</ul>
           ) : (
             <Welcome />
           )}
+          <div className="inputDiv">
+            <Input onEnter={this.handleKeyPress} />
+          </div>
+          <Separator text={'done'} />
+          <ul>{this.renderDoneTodos()}</ul>
         </section>
-        <footer>
-          <Input onEnter={this.handleKeyPress} />
-        </footer>
+        <footer />
       </React.Fragment>
     )
   }
 
-  renderTodos() {
-    return this.state.todos.map((item, index) => (
-      <Todo
-        key={Math.random()}
-        text={item.text}
-        isDone={item.isDone}
-        onClick={() => this.toggleDone(index)}
-        onDelete={() => this.deleteTodo(index)}
-      />
-    ))
+  renderOpenTodos() {
+    return this.state.todos.filter(t => !t.isDone).map(this.renderSingleTodo)
   }
 
-  deleteTodo = index => {
+  renderDoneTodos() {
+    return this.state.todos.filter(t => t.isDone).map(this.renderSingleTodo)
+  }
+
+  renderSingleTodo = item => (
+    <Todo
+      key={item.id}
+      text={item.text}
+      isDone={item.isDone}
+      onClick={() => this.toggleDone(item.id)}
+      onDelete={() => this.deleteTodo(item.id)}
+    />
+  )
+
+  deleteTodo = id => {
     const { todos } = this.state
+    const index = todos.findIndex(t => t.id === id)
 
     const updatedTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
 
@@ -55,8 +68,9 @@ class App extends Component {
     })
   }
 
-  toggleDone = index => {
+  toggleDone = id => {
     const { todos } = this.state
+    const index = todos.findIndex(t => t.id === id)
     const todo = todos[index]
     const updatedTodos = [
       ...todos.slice(0, index),
@@ -73,7 +87,10 @@ class App extends Component {
     const { todos } = this.state
     const input = event.target
     if (event.key === 'Enter') {
-      const updatedTodos = [{ text: input.value, isDone: false }, ...todos]
+      const updatedTodos = [
+        { text: input.value, isDone: false, id: uid() },
+        ...todos
+      ]
 
       this.setState({
         todos: updatedTodos
