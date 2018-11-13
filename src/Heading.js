@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import './Heading.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  background-image: linear-gradient(#ff89c9, deeppink);
+  color: #fefefe;
+  font-size: 30px;
+  padding: 80px 0 10px 30px;
+
+  h1 {
+    margin: 0;
+  }
+`
 
 export class Heading extends Component {
   render() {
     return (
-      <div className="Heading">
+      <Wrapper>
         <h1>To-Do</h1>
-      </div>
+      </Wrapper>
     )
   }
 }

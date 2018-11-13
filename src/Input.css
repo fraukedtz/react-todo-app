@@ -1,9 +1,0 @@
-.input-todo {
-  padding: 10px 10px;
-  font-size: 24px;
-  /* border: none; */
-}
-
-::placeholder {
-  color: deeppink;
-}

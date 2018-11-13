@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
 import uid from 'uid'
-import './App.css'
 import Heading from './Heading.js'
 import Counter from './Counter.js'
 import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
 import Separator from './Separator'
+
+import styled from 'styled-components'
+
+const Wrapper = styled.section`
+  background-color: deeppink;
+`
+const List = styled.ul`
+  text-align: center;
+  margin: 0;
+  padding: 0;
+`
+const TextBox = styled.div`
+  display: grid;
+`
 
 class App extends Component {
   state = {
@@ -17,23 +30,23 @@ class App extends Component {
     this.save()
     return (
       <React.Fragment>
-        <section className="App">
+        <Wrapper>
           <Heading />
           {this.state.todos.length > 0 ? (
             <Counter number={this.getDoneNumber()} />
           ) : null}
           <Separator text={'to-do'} />
           {this.state.todos.length > 0 ? (
-            <ul>{this.renderOpenTodos()}</ul>
+            <List>{this.renderOpenTodos()}</List>
           ) : (
             <Welcome />
           )}
-          <div className="inputDiv">
+          <TextBox>
             <Input onEnter={this.handleKeyPress} />
-          </div>
+          </TextBox>
           <Separator text={'done'} />
-          <ul>{this.renderDoneTodos()}</ul>
-        </section>
+          <List>{this.renderDoneTodos()}</List>
+        </Wrapper>
         <footer />
       </React.Fragment>
     )
