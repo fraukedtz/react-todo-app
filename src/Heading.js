@@ -16,7 +16,7 @@ export class Heading extends Component {
   render() {
     return (
       <Wrapper>
-        <h1>To-Do</h1>
+        <h1>{this.props.text}</h1>
       </Wrapper>
     )
   }

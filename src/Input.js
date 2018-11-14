@@ -12,13 +12,20 @@ const StyledInput = styled.input`
 `
 
 export class Input extends Component {
+  handleKeyPress(event) {
+    this.props.onEnter(event)
+    event.target.value = ''
+  }
+
   render() {
-    const { onEnter } = this.props
     return (
       <StyledInput
         type="text"
         placeholder="+ Add a to-do"
-        onKeyPress={onEnter}
+        onKeyPress={event =>
+          event.key === 'Enter' &&
+          (event.target.value && this.handleKeyPress(event))
+        }
       />
     )
   }

@@ -6,7 +6,7 @@ import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
 import Separator from './Separator.js'
-import ProgressBarContainer from './ProgressBarContainer.js'
+// import ProgressBarContainer from './ProgressBarContainer.js'
 import ProgressBar from './ProgressBar.js'
 
 import styled from 'styled-components'
@@ -20,14 +20,14 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
 `
-const TextBox = styled.div`
+export const TextBox = styled.div`
   display: grid;
 `
 
 class App extends Component {
   state = {
-    todos: this.load()
-    // toggleButton: this.renderButton()
+    todos: this.load(),
+    buttonState: false
   }
 
   render() {
@@ -35,15 +35,11 @@ class App extends Component {
     return (
       <React.Fragment>
         <Wrapper>
-          <Heading />
+          <Heading text={'To-Do List'} />
           {this.state.todos.length > 0 ? (
             <Counter number={this.getDoneNumber()} />
           ) : null}
-          <ProgressBarContainer>
-            <ProgressBar percentage={this.calculatePercentage()}>
-              {this.calculatePercentage() + '%'}
-            </ProgressBar>
-          </ProgressBarContainer>
+          <ProgressBar percentage={this.calculatePercentage()} />
           <Separator text={'to-do'} />
           {this.state.todos.length > 0 ? (
             <List>{this.renderOpenTodos()}</List>
@@ -59,7 +55,7 @@ class App extends Component {
             defaultText={'foo'}
             alternativeText={'bar'}
             initialIsDefault={false}
-            onClick={() => console.log('click')}
+            onClick={() => this.toggleGlobalButtonState()}
           />
         </Wrapper>
         <footer />
@@ -67,26 +63,10 @@ class App extends Component {
     )
   }
 
-  // renderButton() {
-  //   return (
-  //     <ToggleButton
-  //       defaultText={'foo'}
-  //       alternativeText={'bar'}
-  //       isDefault={true}
-  //       onClick={() => toggleButtonState()}
-  //     />
-  //   )
-  // }
-
-  toggleButtonState = () => {
-    console.log('click')
-    // const newBtn = {isDefault:
-
-    // }
-
-    // this.setState({
-    //   this.state.toggleButton = newBtn
-    // })
+  toggleGlobalButtonState = () => {
+    this.setState({
+      buttonState: !this.state.buttonState
+    })
   }
 
   renderOpenTodos() {
@@ -136,18 +116,15 @@ class App extends Component {
   handleKeyPress = event => {
     const { todos } = this.state
     const input = event.target
-    if (event.key === 'Enter') {
-      const updatedTodos = [
-        { text: input.value, isDone: false, id: uid() },
-        ...todos
-      ]
 
-      this.setState({
-        todos: updatedTodos
-      })
+    const updatedTodos = [
+      { text: input.value, isDone: false, id: uid() },
+      ...todos
+    ]
 
-      input.value = ''
-    }
+    this.setState({
+      todos: updatedTodos
+    })
   }
 
   getDoneNumber() {
