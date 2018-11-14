@@ -10,6 +10,7 @@ import ProgressBarContainer from './ProgressBarContainer.js'
 import ProgressBar from './ProgressBar.js'
 
 import styled from 'styled-components'
+import ToggleButton from './ToggleButton.js'
 
 const Wrapper = styled.section`
   background-color: deeppink;
@@ -26,6 +27,7 @@ const TextBox = styled.div`
 class App extends Component {
   state = {
     todos: this.load()
+    // toggleButton: this.renderButton()
   }
 
   render() {
@@ -53,10 +55,38 @@ class App extends Component {
           </TextBox>
           <Separator text={'done'} />
           <List>{this.renderDoneTodos()}</List>
+          <ToggleButton
+            defaultText={'foo'}
+            alternativeText={'bar'}
+            initialIsDefault={false}
+            onClick={() => console.log('click')}
+          />
         </Wrapper>
         <footer />
       </React.Fragment>
     )
+  }
+
+  // renderButton() {
+  //   return (
+  //     <ToggleButton
+  //       defaultText={'foo'}
+  //       alternativeText={'bar'}
+  //       isDefault={true}
+  //       onClick={() => toggleButtonState()}
+  //     />
+  //   )
+  // }
+
+  toggleButtonState = () => {
+    console.log('click')
+    // const newBtn = {isDefault:
+
+    // }
+
+    // this.setState({
+    //   this.state.toggleButton = newBtn
+    // })
   }
 
   renderOpenTodos() {

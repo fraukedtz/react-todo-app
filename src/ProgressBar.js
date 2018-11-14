@@ -6,5 +6,4 @@ export default styled.div`
   text-align: center;
   border-radius: 5px;
   transition: width 0.3s ease;
-  /*  */
 `
