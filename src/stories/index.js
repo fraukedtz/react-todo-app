@@ -22,7 +22,14 @@ storiesOf('Counter', module).add('with number', () => (
 
 storiesOf('ProgressBar', module).add('different progress state', () => (
   <React.Fragment>
-    <ProgressBar percentage={number('Progress (%)', '20')} />
+    <ProgressBar
+      percentage={number('Progress (%)', '25', {
+        range: true,
+        min: 0,
+        max: 100,
+        step: 1
+      })}
+    />
   </React.Fragment>
 ))
 
