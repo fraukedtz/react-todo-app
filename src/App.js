@@ -5,7 +5,9 @@ import Counter from './Counter.js'
 import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
-import Separator from './Separator'
+import Separator from './Separator.js'
+import ProgressBarContainer from './ProgressBarContainer.js'
+import ProgressBar from './ProgressBar.js'
 
 import styled from 'styled-components'
 
@@ -35,6 +37,11 @@ class App extends Component {
           {this.state.todos.length > 0 ? (
             <Counter number={this.getDoneNumber()} />
           ) : null}
+          <ProgressBarContainer>
+            <ProgressBar percentage={this.calculatePercentage()}>
+              {this.calculatePercentage() + '%'}
+            </ProgressBar>
+          </ProgressBarContainer>
           <Separator text={'to-do'} />
           {this.state.todos.length > 0 ? (
             <List>{this.renderOpenTodos()}</List>
@@ -115,6 +122,11 @@ class App extends Component {
 
   getDoneNumber() {
     return this.state.todos.filter(t => t.isDone).length
+  }
+
+  calculatePercentage() {
+    const array = this.state.todos
+    return Math.round((array.filter(t => t.isDone).length / array.length) * 100)
   }
 
   save() {
