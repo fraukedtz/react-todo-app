@@ -34,12 +34,34 @@ const Wrapper = styled.div`
 `
 
 export default class App extends Component {
+  state = {
+    showDoneTodos: true
+  }
+
+  toggleShowDoneTodos = () => {
+    this.setState({
+      showDoneTodos: !this.state.showDoneTodos
+    })
+  }
+
   render() {
     return (
       <Router>
         <Wrapper>
-          <Route exact path="/" component={Home} />
-          <Route path="/config/" component={Config} />
+          <Route
+            exact
+            path="/"
+            render={() => <Home showDoneTodos={this.state.showDoneTodos} />}
+          />
+          <Route
+            path="/config/"
+            render={() => (
+              <Config
+                showDoneTodos={this.state.showDoneTodos}
+                onToggle={this.toggleShowDoneTodos}
+              />
+            )}
+          />
           <nav>
             <NavLink exact activeClassName="active" to="/">
               Home

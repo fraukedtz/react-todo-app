@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
 `
 
-export class Heading extends Component {
+export default class Heading extends Component {
   render() {
     return (
       <Wrapper>
@@ -21,5 +21,3 @@ export class Heading extends Component {
     )
   }
 }
-
-export default Heading

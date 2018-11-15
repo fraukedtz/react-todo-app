@@ -11,7 +11,7 @@ const StyledInput = styled.input`
   }
 `
 
-export class Input extends Component {
+export default class Input extends Component {
   handleKeyPress(event) {
     this.props.onEnter(event)
     event.target.value = ''
@@ -30,5 +30,3 @@ export class Input extends Component {
     )
   }
 }
-
-export default Input

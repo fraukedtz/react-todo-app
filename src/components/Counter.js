@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   transition: 6s ease-in-out;
 `
 
-export class Counter extends Component {
+export default class Counter extends Component {
   render() {
     return (
       <Wrapper>
@@ -22,5 +22,3 @@ export class Counter extends Component {
     )
   }
 }
-
-export default Counter

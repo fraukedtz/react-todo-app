@@ -13,7 +13,7 @@ const Button = styled.button`
   }
 `
 
-export class ToggleButton extends Component {
+export default class ToggleButton extends Component {
   state = {
     isDefault: this.props.isDefault == null ? true : this.props.isDefault,
     lastIsDefaultFromProps: this.props.isDefault
@@ -47,5 +47,3 @@ export class ToggleButton extends Component {
     )
   }
 }
-
-export default ToggleButton

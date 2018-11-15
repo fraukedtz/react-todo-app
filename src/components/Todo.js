@@ -20,7 +20,7 @@ const Button = styled.button`
   font-size: 24px;
 `
 
-export class Todo extends Component {
+export default class Todo extends Component {
   render() {
     const { text, isDone, onClick, onDelete } = this.props
     return (
@@ -33,5 +33,3 @@ export class Todo extends Component {
     )
   }
 }
-
-export default Todo

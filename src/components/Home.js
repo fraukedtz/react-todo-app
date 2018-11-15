@@ -9,7 +9,6 @@ import Separator from './Separator.js'
 import ProgressBar from './ProgressBar.js'
 
 import styled from 'styled-components'
-import ToggleButton from './ToggleButton.js'
 
 const Wrapper = styled.section`
   background-color: deeppink;
@@ -25,10 +24,8 @@ export const TextBox = styled.div`
 
 export default class Home extends Component {
   state = {
-    todos: this.load(),
-    buttonState: false
+    todos: this.load()
   }
-
   render() {
     this.save()
     return (
@@ -48,23 +45,10 @@ export default class Home extends Component {
           <TextBox>
             <Input onEnter={this.handleKeyPress} />
           </TextBox>
-          <Separator text={'done'} />
-          <List>{this.renderDoneTodos()}</List>
-          <ToggleButton
-            defaultText={'foo'}
-            alternativeText={'bar'}
-            isDefault={false}
-            onClick={() => this.toggleGlobalButtonState()}
-          />
+          <List>{this.props.showDoneTodos && this.renderDoneTodos()}</List>
         </Wrapper>
       </React.Fragment>
     )
-  }
-
-  toggleGlobalButtonState = () => {
-    this.setState({
-      buttonState: !this.state.buttonState
-    })
   }
 
   renderOpenTodos() {
@@ -72,7 +56,12 @@ export default class Home extends Component {
   }
 
   renderDoneTodos() {
-    return this.state.todos.filter(t => t.isDone).map(this.renderSingleTodo)
+    return (
+      <React.Fragment>
+        <Separator text={'done'} />
+        {this.state.todos.filter(t => t.isDone).map(this.renderSingleTodo)}
+      </React.Fragment>
+    )
   }
 
   renderSingleTodo = item => (

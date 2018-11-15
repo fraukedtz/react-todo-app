@@ -19,7 +19,7 @@ const Line = styled.div`
   border-bottom: ${props => props.width || 4}px solid #fefefe;
 `
 
-export class Separator extends Component {
+export default class Separator extends Component {
   render() {
     const { text } = this.props
     return (
@@ -31,5 +31,3 @@ export class Separator extends Component {
     )
   }
 }
-
-export default Separator
