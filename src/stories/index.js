@@ -9,7 +9,7 @@ import Todo from '../components/Todo'
 import Separator from '../components/Separator'
 import ProgressBar from '../components/ProgressBar'
 import Input from '../components/Input'
-import { TextBox } from '../components/App'
+import { TextBox } from '../components/Home'
 import Counter from '../components/Counter'
 import ToggleButton from '../components/ToggleButton'
 
