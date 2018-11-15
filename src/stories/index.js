@@ -74,7 +74,7 @@ storiesOf('ToggleButton', module).add('with text', () => (
     <ToggleButton
       defaultText={text('Default text', 'foo')}
       alternativeText={text('Alternative text', 'bar')}
-      initialIsDefault={boolean('Set state', true)}
+      isDefault={boolean('Set state', true)}
       onClick={action('onClick')}
     />
   </React.Fragment>

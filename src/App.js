@@ -54,7 +54,7 @@ class App extends Component {
           <ToggleButton
             defaultText={'foo'}
             alternativeText={'bar'}
-            initialIsDefault={false}
+            isDefault={false}
             onClick={() => this.toggleGlobalButtonState()}
           />
         </Wrapper>
