@@ -6,7 +6,6 @@ import Welcome from './Welcome.js'
 import Input from './Input.js'
 import Todo from './Todo.js'
 import Separator from './Separator.js'
-// import ProgressBarContainer from './ProgressBarContainer.js'
 import ProgressBar from './ProgressBar.js'
 
 import styled from 'styled-components'

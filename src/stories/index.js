@@ -5,18 +5,25 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 import { text, boolean, number } from '@storybook/addon-knobs'
 
-import { Button, Welcome } from '@storybook/react/demo'
-import Todo from '../Todo'
-import Separator from '../Separator'
-import ProgressBar from '../ProgressBar'
-import Input from '../Input'
-import { TextBox } from '../App'
-import Counter from '../Counter'
-import ToggleButton from '../ToggleButton'
+import Todo from '../components/Todo'
+import Separator from '../components/Separator'
+import ProgressBar from '../components/ProgressBar'
+import Input from '../components/Input'
+import { TextBox } from '../components/App'
+import Counter from '../components/Counter'
+import ToggleButton from '../components/ToggleButton'
 
 storiesOf('Counter', module).add('with number', () => (
   <React.Fragment>
     <Counter number={number('Number of to-dos done', '3')} />
+  </React.Fragment>
+))
+
+storiesOf('Input', module).add('default state', () => (
+  <React.Fragment>
+    <TextBox>
+      <Input onEnter={action('onEnter')} />
+    </TextBox>
   </React.Fragment>
 ))
 
@@ -41,14 +48,6 @@ storiesOf('Separator', module).add('with text', () => (
     <div style={{ background: 'deeppink' }}>
       <Separator text={text('Display text2', 'done tasks')} />
     </div>
-  </React.Fragment>
-))
-
-storiesOf('Input', module).add('default state', () => (
-  <React.Fragment>
-    <TextBox>
-      <Input onEnter={action('onEnter')} />
-    </TextBox>
   </React.Fragment>
 ))
 
